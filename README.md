@@ -59,53 +59,15 @@ In your `android/app/src/main/AndroidManifest.xml`
     .....
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SET_ALARM"/> <!-- This permission allows schedule alarms using AlarmManager. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/> <!-- This permission allows schedule alarms using AlarmManager. -->
 
     <application ....>
-        <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground"
-                    android:value="false"/>
-        <!-- Change the resource name to your App's accent color - or any other color you want -->
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
-                    android:resource="@color/white"/> <!-- or @android:color/{name} to use a standard color -->
-
-        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions" />
+        .....
+        <!-- This if for schedule local push notification -->
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" />
-        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+    </application>
      .....
-```
-
-If not using a built in Android color (`@android:color/{name}`) for the `notification_color` `meta-data` item.
-In `android/app/src/main/res/values/colors.xml` (Create the file if it doesn't exist).
-
-```xml
-<resources>
-    <color name="white">#FFF</color>
-</resources>
-```
-
-If your app has an @Override on onNewIntent in `MainActivity.java` ensure that function includes a super call on onNewIntent (if your `MainActivity.java` does not have an @Override for onNewIntent skip this):
-
-```java
-    @Override
-    public void onNewIntent(Intent intent) {
-        ...
-        super.onNewIntent(intent);
-        ...
-    }
 ```
 
 ### If you use remote notifications

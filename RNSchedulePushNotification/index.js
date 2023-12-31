@@ -45,12 +45,15 @@ PushNotification.configure({
     },
   
     // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
-    // onAction: function (notification) {
-    //   console.log('ACTION:', notification.action);
-    //   console.log('NOTIFICATION:', notification);
+    onAction: function (notification) {
+      console.log('ACTION:', notification.action);
+      console.log('NOTIFICATION:', notification);
+      if(notification.action === "Yes"){
+        console.log("texto")// this will contain the inline reply text. 
+      }
   
-    //   // process the action
-    // },
+      // process the action
+    },
   
     // (optional) Called when the user fails to register for remote notifications. Typically occurs when APNS is having issues, or the device is a simulator. (iOS)
     // onRegistrationError: function (err) {

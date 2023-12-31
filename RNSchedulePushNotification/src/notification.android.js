@@ -16,6 +16,7 @@ const handleScheduleNotification = (title, message, date) => {
         message: message,
         date: new Date(Date.now() + 5 * 1000), // Use the date parameter for scheduling
         repeatTime: 1,
+        actions: ['Yes', 'No'],
     });
 }
 

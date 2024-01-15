@@ -1,6 +1,6 @@
 # React Native Push Notifications
 
-React Native Local and Remote Notifications for iOS and Android
+React-Native Local and Remote Notifications for iOS and Android
 
 ## Installation
 
